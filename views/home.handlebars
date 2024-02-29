@@ -1,0 +1,44 @@
+<main class="lista-vacantes">
+    <h2>Todas las Preguntas</h2>
+    {{#if preguntas.length}}
+        {{#each preguntas}}
+            <div class="caja-pregunta">
+                <h3>{{titulo}}</h3>
+                <p class="etiqueta">Respuesta:</p>
+                <p class="nombre">- {{respuesta}}</p>
+                <p class="etiqueta">Semestre:</p>
+                <p class="nombre">- {{semestre}}</p>
+            </div>
+        {{/each}}
+    {{else}}
+        <p>No hay preguntas disponibles</p>
+    {{/if}}
+
+    <nav aria-label="Pagination">
+        <ul class="pagination">
+            {{#if prevPage}}
+                <li class="page-item">
+                    <a class="page-link" href="?pagina={{prevPage}}">Atras</a>
+                </li>
+            {{/if}}
+            
+            {{#range paginaStart paginaEnd}}
+                {{#ifeq this paginaActual}}
+                    <li class="page-item">
+                        <a class="page-link active" href="?pagina={{this}}">{{this}}</a>
+                    </li>
+                {{else}}
+                    <li class="page-item">
+                        <a class="page-link" href="?pagina={{this}}">{{this}}</a>
+                    </li>
+                {{/ifeq}}
+            {{/range}}
+            
+            {{#if nextPage}}
+                <li class="page-item">
+                    <a class="page-link" href="?pagina={{nextPage}}">Siguente</a>
+                </li>
+            {{/if}}
+        </ul>
+    </nav>
+</main>
